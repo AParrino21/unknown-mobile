@@ -16,3 +16,18 @@ export interface PostData {
     commentReactions: number;
   }[];
 }
+
+export interface Comments {
+  id: string;
+  commentAuthor: string;
+  commentData: string;
+  commentDate: string;
+  commentReactions: number;
+}
+
+export interface CommentModalProps {
+  openViewComments: boolean;
+  setOpenViewComments: (open: boolean) => void;
+  viewedComment: PostData[];
+  setViewedComment: (value: PostData[]) => void;
+}

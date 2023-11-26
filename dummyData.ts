@@ -50,16 +50,7 @@ export const dummyData = [
     author: "postulio",
     date: "5/10/1990 21:29:06",
     reactions: { bs: 110, real: 5110 },
-    comments: [
-      {
-        id: "dffjfjfjffkw0qekcw-evc",
-        commentData:
-          "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
-        commentAuthor: "cheese",
-        commentDate: "5/20/1993 21:29:06",
-        commentReactions: 40,
-      },
-    ],
+    comments: [],
   },
   {
     id: "cmmmrowfkcowjcf9wece0004",
@@ -114,7 +105,7 @@ export const dummyData = [
       {
         id: "cc88ccj8888asndcoajosndjca",
         commentData:
-          "Lorem ipsum dolor, sit amet consectetur adipisicing elit.",
+          "Lorem ipsum dolor, sit amet consectetur adipisicing elit.ipsum dolor, sit amet consectetur adipisicing elit.ipsum dolor, sit amet consectetur adipisicing elit.ipsum dolor, sit amet consectetur adipisicing elit.ipsum dolor, sit amet consectetur adipisicing elit.",
         commentAuthor: "goobis",
         commentDate: "5/20/1993 21:29:06",
         commentReactions: 74,
