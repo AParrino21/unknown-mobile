@@ -77,15 +77,18 @@ const Home = () => {
                   </Pressable>
                   <Pressable onPress={() => viewComments(item.id)}>
                     <Text style={styles.cardComments}>
-                      VIEW COMMENTS
-                      (<Text style={styles.numberOfComments}>{item.comments.length}</Text>)
+                      VIEW COMMENTS (
+                      <Text style={styles.numberOfComments}>
+                        {item.comments.length}
+                      </Text>
+                      )
                     </Text>
                   </Pressable>
                 </View>
                 <View>
                   <Pressable onPress={() => handleDislike(item.id)}>
                     <Text style={styles.thumbText}>
-                      CALL BS{" "}
+                      BS{" "}
                       <Octicons name="thumbsdown" size={12} color="red" />
                     </Text>
                   </Pressable>
@@ -109,7 +112,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   flatListContainer: {
-    marginBottom: 300,
+    marginBottom: 240,
   },
   cardRoot: {
     margin: 15,
@@ -167,7 +170,7 @@ const styles = StyleSheet.create({
   },
   numberOfComments: {
     color: "black",
-    fontWeight: "800"
+    fontWeight: "800",
   },
   thumbText: {
     fontSize: 12,

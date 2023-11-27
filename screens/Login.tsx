@@ -24,7 +24,7 @@ const Login: React.FC<LoginProps> = ({ navigation }) => {
         onChangeText={setPassword}
       />
       <View style={styles.buttonContainer}>
-        <Button title="Login" onPress={() => navigation.navigate("Profile")} />
+        <Button title="Login" onPress={() => navigation.navigate("ProfileStack")} />
         <Button title="Sign Up" onPress={() => navigation.navigate("Signup")} />
       </View>
     </View>

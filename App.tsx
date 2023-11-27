@@ -1,9 +1,10 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet } from "react-native";
+import { SafeAreaView, StyleSheet } from "react-native";
 import Login from "./screens/Login";
 import Signup from "./screens/Signup";
 import Home from "./screens/Home";
 import Profile from "./screens/Profile";
+import Nav from "./components/Nav";
 
 // Navigation ---------------------------------------------------------------
 // npm install @react-navigation/native
@@ -21,10 +22,18 @@ export default function App() {
       <StatusBar style="auto" />
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen
+            name="HomeStack"
+            component={Nav}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen name="Signup" component={Signup} />
-          <Stack.Screen name="Profile" component={Profile} />
+          <Stack.Screen
+            name="ProfileStack"
+            component={Nav}
+            options={{ headerShown: false }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>
