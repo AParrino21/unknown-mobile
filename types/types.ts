@@ -2,6 +2,10 @@ export interface LoginProps {
   navigation: any;
 }
 
+export interface HomeProps {
+  navigation: any;
+}
+
 export interface PostData {
   id: string;
   postData: string;

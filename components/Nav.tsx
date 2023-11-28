@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Button, StyleSheet } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../screens/Home";
@@ -26,6 +26,8 @@ const Nav = () => {
               color={focused ? "#5c1cff" : "black"}
             />
           ),
+          headerShown: false,
+          headerTitleAlign: "left",
         }}
         component={Home}
       />

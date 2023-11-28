@@ -12,6 +12,7 @@ import Nav from "./components/Nav";
 import { NavigationContainer } from "@react-navigation/native";
 // npm install @react-navigation/native-stack
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Reveal from "./screens/Reveal";
 // Navigation ---------------------------------------------------------------
 
 const Stack = createNativeStackNavigator();
@@ -34,6 +35,7 @@ export default function App() {
             component={Nav}
             options={{ headerShown: false }}
           />
+          <Stack.Screen name="Reveal" component={Reveal} />
         </Stack.Navigator>
       </NavigationContainer>
     </>

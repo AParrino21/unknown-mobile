@@ -167,6 +167,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingTop: 20,
     paddingBottom: 60,
+    fontFamily:'AppleSDGothicNeo-UltraLight',
+    fontSize: 16
   },
   commentFooter: {
     display: "flex",

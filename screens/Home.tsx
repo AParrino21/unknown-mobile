@@ -3,9 +3,9 @@ import React from "react";
 import { dummyData } from "../dummyData";
 import { Octicons } from "@expo/vector-icons";
 import CommentModal from "../components/CommentModal";
-import { PostData } from "../types";
+import { HomeProps, PostData } from "../types";
 
-const Home = () => {
+const Home: React.FC<HomeProps> = ({ navigation }) => {
   const [openViewComments, setOpenViewComments] =
     React.useState<boolean>(false);
   const [viewedComment, setViewedComment] = React.useState<PostData[]>([]);
@@ -35,13 +35,14 @@ const Home = () => {
         viewedComment={viewedComment}
         setViewedComment={setViewedComment}
       />
-      <View>
-        <Text style={styles.homeHeader}>
-          Welcome to Beyond Sightings, the central hub for UFO stories,
-          encounters, and all things Alien. Share your unique experiences with
-          the world. Your stories will remain unaltered, unregulated, and fully
-          revealed.
+      <View style={styles.homeTitleContainer}>
+        <Text style={styles.homeTitle}>
+          <Text style={styles.titleLetter}>B</Text>eyond{" "}
+          <Text style={styles.titleLetter}>S</Text>ightings
         </Text>
+        <Pressable onPress={() => navigation.navigate("Reveal")}>
+          <Text style={styles.reavealBtn}>Reveal</Text>
+        </Pressable>
       </View>
       <View style={styles.flatListContainer}>
         <FlatList
@@ -88,8 +89,7 @@ const Home = () => {
                 <View>
                   <Pressable onPress={() => handleDislike(item.id)}>
                     <Text style={styles.thumbText}>
-                      BS{" "}
-                      <Octicons name="thumbsdown" size={12} color="red" />
+                      BS <Octicons name="thumbsdown" size={12} color="red" />
                     </Text>
                   </Pressable>
                 </View>
@@ -106,16 +106,45 @@ const Home = () => {
 export default Home;
 
 const styles = StyleSheet.create({
-  homeHeader: {
+  homeTitleContainer: {
+    marginTop: 70,
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginLeft: 15,
+    paddingTop: 12,
+    paddingBottom: 15
+  },
+  homeTitle: {
+    fontSize: 28,
+    fontFamily: "AppleSDGothicNeo-UltraLight",
+  },
+  titleLetter: {
+    fontWeight: "700",
+    color: "#5c1cff",
+  },
+  reavealBtn: {
     textAlign: "center",
     fontWeight: "600",
-    padding: 20,
+    borderWidth: 1,
+    width: 80,
+    marginLeft: "auto",
+    marginRight: 15,
+    marginBottom: 10,
+    padding: 8,
+    borderRadius: 5,
+    backgroundColor: "#5c1cff",
+    color: "white",
+    overflow: "hidden",
+    fontFamily: "AppleSDGothicNeo-UltraLight",
   },
   flatListContainer: {
-    marginBottom: 240,
+    marginBottom: 280,
   },
   cardRoot: {
     margin: 15,
+    marginTop: 5,
     marginBottom: 30,
     padding: 30,
     shadowColor: "#000",
@@ -154,6 +183,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 30,
     marginBottom: 30,
+    fontFamily: "AppleSDGothicNeo-UltraLight",
+    fontSize: 17,
   },
   cardInteractionContainer: {
     marginTop: 20,

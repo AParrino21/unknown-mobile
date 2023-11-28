@@ -1,6 +1,7 @@
 import { View, Text, Button, TextInput, StyleSheet } from "react-native";
 import React from "react";
 import { LoginProps } from "../types";
+import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
 
 const Login: React.FC<LoginProps> = ({ navigation }) => {
   const [email, setEmail] = React.useState<string>("");
@@ -8,9 +9,13 @@ const Login: React.FC<LoginProps> = ({ navigation }) => {
 
   return (
     <View style={styles.loginContainer}>
-      <View>
-        <Text style={styles.loginTitle}>Beyond Sightings</Text>
-      </View>
+      <MaterialCommunityIcons name="alien" size={50} color="black" />
+      <Text style={styles.homeHeader}>
+        Welcome to Beyond Sightings, the central hub for UFO stories,
+        encounters, and all things Alien. Share your unique experiences with the
+        world. Your stories will remain unaltered, unregulated, and forever
+        known.
+      </Text>
       <TextInput
         style={styles.input}
         value={email}
@@ -24,7 +29,10 @@ const Login: React.FC<LoginProps> = ({ navigation }) => {
         onChangeText={setPassword}
       />
       <View style={styles.buttonContainer}>
-        <Button title="Login" onPress={() => navigation.navigate("ProfileStack")} />
+        <Button
+          title="Login"
+          onPress={() => navigation.navigate("ProfileStack")}
+        />
         <Button title="Sign Up" onPress={() => navigation.navigate("Signup")} />
       </View>
     </View>
@@ -34,6 +42,13 @@ const Login: React.FC<LoginProps> = ({ navigation }) => {
 export default Login;
 
 const styles = StyleSheet.create({
+  homeHeader: {
+    textAlign: "center",
+    // fontWeight: "700",
+    padding: 20,
+    fontSize: 18,
+    fontFamily:'AppleSDGothicNeo-UltraLight'
+  },
   loginContainer: {
     flex: 1,
     alignItems: "center",
@@ -46,12 +61,6 @@ const styles = StyleSheet.create({
     padding: 10,
     width: "80%",
     borderRadius: 10,
-  },
-  loginTitle: {
-    textAlign: "center",
-    marginBottom: 20,
-    fontWeight: "900",
-    fontSize: 20,
   },
   buttonContainer: {
     marginTop: 10,
