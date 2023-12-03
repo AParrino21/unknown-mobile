@@ -1,16 +1,17 @@
-import { Button, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "../screens/Home";
-import Profile from "../screens/Profile";
-import Alerts from "../screens/Alerts";
+import Home from "../../screens/Home";
+import Alerts from "../../screens/Alerts";
 import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
+import DrawerNav from "./DrawerNav";
 
 const Tab = createBottomTabNavigator();
 
-const Nav = () => {
+const BottomNav = () => {
   return (
     <Tab.Navigator
+      initialRouteName="Profile"
       screenOptions={{
         tabBarActiveTintColor: "#5c1cff",
         tabBarInactiveTintColor: "#000000",
@@ -47,6 +48,7 @@ const Nav = () => {
       <Tab.Screen
         name="Profile"
         options={{
+          headerShown: false,
           tabBarIcon: ({ focused }) => (
             <MaterialCommunityIcons
               name="alien-outline"
@@ -55,12 +57,12 @@ const Nav = () => {
             />
           ),
         }}
-        component={Profile}
+        component={DrawerNav}
       />
     </Tab.Navigator>
   );
 };
 
-export default Nav;
+export default BottomNav;
 
 const styles = StyleSheet.create({});

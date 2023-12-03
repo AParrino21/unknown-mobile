@@ -1,11 +1,34 @@
-import { View, Text, Button, TextInput, StyleSheet } from "react-native";
+import { View, Text, Button, TextInput, StyleSheet, Alert } from "react-native";
 import React from "react";
 import { LoginProps } from "../types";
-import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { AuthContext } from "../store/authContext";
+import Loading from "../components/Loading";
 
 const Login: React.FC<LoginProps> = ({ navigation }) => {
+  const { login } = React.useContext(AuthContext);
   const [email, setEmail] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
+
+  const [loading, setLoading] = React.useState<boolean>(false);
+
+  async function handleLogin() {
+    setLoading(true);
+    if (email !== "" && password !== "") {
+      try {
+        await login(email, password);
+        setLoading(false);
+      } catch (err) {
+        Alert.alert("Invalid Email or Password");
+        setLoading(false);
+      }
+    } else {
+      setLoading(false);
+      Alert.alert("Missing Fields");
+    }
+  }
+
+  if (loading) return <Loading message="Logging You In..." />;
 
   return (
     <View style={styles.loginContainer}>
@@ -21,18 +44,18 @@ const Login: React.FC<LoginProps> = ({ navigation }) => {
         value={email}
         placeholder="Email"
         onChangeText={setEmail}
+        autoCapitalize="none"
       />
       <TextInput
         style={styles.input}
         value={password}
+        secureTextEntry
         placeholder="Password"
         onChangeText={setPassword}
+        autoCapitalize="none"
       />
       <View style={styles.buttonContainer}>
-        <Button
-          title="Login"
-          onPress={() => navigation.navigate("ProfileStack")}
-        />
+        <Button title="Login" onPress={handleLogin} />
         <Button title="Sign Up" onPress={() => navigation.navigate("Signup")} />
       </View>
     </View>
@@ -47,7 +70,7 @@ const styles = StyleSheet.create({
     // fontWeight: "700",
     padding: 20,
     fontSize: 18,
-    fontFamily:'AppleSDGothicNeo-UltraLight'
+    fontFamily: "AppleSDGothicNeo-UltraLight",
   },
   loginContainer: {
     flex: 1,

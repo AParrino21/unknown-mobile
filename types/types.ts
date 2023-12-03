@@ -1,10 +1,26 @@
-export interface LoginProps {
+export interface AuthProviderProps {
+  token: any;
+  isAuthenticated: boolean;
+  authenticate: (token: any) => void;
+  logout: () => void;
+  createUser: (email: string, password: string, displayName: string) => void;
+  login: (email: string, password: string) => void;
+  storageLoginLoad: boolean
+}
+
+export interface childrenProps {
+  children: React.ReactNode;
+}
+
+export interface NavigationProp {
   navigation: any;
 }
 
-export interface HomeProps {
-  navigation: any;
-}
+export interface LoginProps extends NavigationProp {}
+
+export interface SignupProps extends NavigationProp {}
+
+export interface HomeProps extends NavigationProp {}
 
 export interface PostData {
   id: string;
@@ -34,4 +50,8 @@ export interface CommentModalProps {
   setOpenViewComments: (open: boolean) => void;
   viewedComment: PostData[];
   setViewedComment: (value: PostData[]) => void;
+}
+
+export interface LoadingProps {
+  message: string;
 }
