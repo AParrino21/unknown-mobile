@@ -33,7 +33,10 @@ const Reveal = () => {
       </View>
       <Pressable style={styles.postBtnContainer} onPress={handlePost}>
         <View>
-          <Text style={styles.postBtnText}>POST</Text>
+          <Text style={styles.postBtnText}>
+            POST YOUR{" "}
+            <Text style={{ color: "#5c1cff", fontWeight: "900" }}>BS</Text>
+          </Text>
         </View>
       </Pressable>
     </View>
@@ -67,7 +70,7 @@ const styles = StyleSheet.create({
     color: "white",
   },
   postBtnContainer: {
-    width: 100,
+    width: 130,
     borderWidth: 1,
     marginLeft: "auto",
     marginRight: "auto",
@@ -80,6 +83,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     padding: 10,
     fontWeight: "600",
-    backgroundColor:"#cfcadb"
+    backgroundColor: "#cfcadb",
+    fontFamily: "AppleSDGothicNeo-UltraLight",
   },
 });
