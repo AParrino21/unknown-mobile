@@ -3,9 +3,9 @@ export interface AuthProviderProps {
   isAuthenticated: boolean;
   authenticate: (token: any) => void;
   logout: () => void;
-  createUser: (email: string, password: string, displayName: string) => void;
+  createUser: (email: string, password: string, displayName: string, avatar: string) => void;
   login: (email: string, password: string) => void;
-  storageLoginLoad: boolean
+  storageLoginLoad: boolean;
 }
 
 export interface childrenProps {
@@ -54,4 +54,10 @@ export interface CommentModalProps {
 
 export interface LoadingProps {
   message: string;
+}
+
+export interface AvatarCompProps {
+  color: string;
+  avatar: string;
+  handleChooseAvatar: (color: string) => void
 }

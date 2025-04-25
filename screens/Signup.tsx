@@ -4,6 +4,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { SignupProps } from "../types";
 import { AuthContext } from "../store/authContext";
 import Loading from "../components/Loading";
+import AvatarComp from "../components/AvatarComp";
 
 const Signup: React.FC<SignupProps> = ({ navigation }) => {
   const { createUser } = React.useContext(AuthContext);
@@ -32,7 +33,7 @@ const Signup: React.FC<SignupProps> = ({ navigation }) => {
     setLoading(true);
     if (email !== "" && password !== "" && avatar !== "") {
       try {
-        await createUser(email, password, username);
+        await createUser(email, password, username, avatar);
         setLoading(false);
       } catch (err) {
         // LOOK INTO THIS
@@ -57,28 +58,6 @@ const Signup: React.FC<SignupProps> = ({ navigation }) => {
     setAvatar(color);
     console.log(color);
   }
-
-  const AvatarComp: React.FC<{ color: string; avatar: string }> = ({
-    color,
-    avatar,
-  }) => {
-    const [selected, setSelected] = React.useState<boolean>(false);
-    React.useEffect(() => {
-      if (avatar === color) {
-        setSelected(true);
-      }
-    }, [avatar]);
-
-    return (
-      <MaterialCommunityIcons
-        style={[styles.avatarIcons, selected && styles.activeBg]}
-        name="alien"
-        size={25}
-        color={color}
-        onPress={() => handleChooseAvatar(color)}
-      />
-    );
-  };
 
   if (loading) return <Loading message="Creating User..." />;
 
@@ -119,7 +98,12 @@ const Signup: React.FC<SignupProps> = ({ navigation }) => {
         <Text style={styles.avatarText}>Choose an Avatar</Text>
         <View style={styles.avatarContainer}>
           {avatarColors.map((color) => (
-            <AvatarComp key={color} color={color} avatar={avatar} />
+            <AvatarComp
+              key={color}
+              color={color}
+              avatar={avatar}
+              handleChooseAvatar={handleChooseAvatar}
+            />
           ))}
         </View>
       </View>
@@ -166,13 +150,5 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     textAlign: "center",
     padding: 8,
-  },
-  avatarIcons: {
-    padding: 2,
-    borderRadius: 15,
-    overflow: "hidden",
-  },
-  activeBg: {
-    backgroundColor: "#ccc3e3",
   },
 });

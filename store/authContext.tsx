@@ -7,7 +7,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 export const AuthContext = React.createContext({} as AuthProviderProps);
 
 const AuthProvider = ({ children }: childrenProps) => {
-  
+  const server = __DEV__ ? "http://localhost:3001" : "prod";
+
   const [authToken, setAuthToken] = React.useState<any>();
   const [storageLoginLoad, setStorageLoginLoad] = React.useState<boolean>(true);
 
@@ -29,14 +30,17 @@ const AuthProvider = ({ children }: childrenProps) => {
   async function createUser(
     email: string,
     password: string,
-    displayName: string
+    displayName: string,
+    avatar: string
   ) {
-    const response = await axios.post(
-      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${key}`,
-      {
+    const response = await axios.post(`${server}/api/unknownM/createUser`, {
+    // const response = await axios.post(
+    //   "https://fww9stggsd.execute-api.us-east-1.amazonaws.com/dev/signup",
+    //   {
         email,
         password,
         displayName,
+        avatar,
         returnSecureToken: true,
       }
     );
@@ -45,9 +49,10 @@ const AuthProvider = ({ children }: childrenProps) => {
   }
 
   async function login(email: string, password: string) {
-    const response = await axios.post(
-      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${key}`,
-      {
+    const response = await axios.post(`${server}/api/unknownM/login`, {
+    // const response = await axios.post(
+    //   "https://fww9stggsd.execute-api.us-east-1.amazonaws.com/dev/login",
+    //   {
         email,
         password,
         returnSecureToken: true,
@@ -65,6 +70,16 @@ const AuthProvider = ({ children }: childrenProps) => {
     setAuthToken(null);
     AsyncStorage.removeItem("token");
   }
+
+//   async function getAllUsersData() {
+//     const response = await axios.get('https://fww9stggsd.execute-api.us-east-1.amazonaws.com/dev/get-user')
+
+//     console.log(response?.data.Items)
+//   }
+
+//   React.useEffect(() => {
+//     getAllUsersData()
+//   }, [])
 
   return (
     <AuthContext.Provider
